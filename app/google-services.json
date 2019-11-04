@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "739551445336",
+    "firebase_url": "https://dateme-98348.firebaseio.com",
+    "project_id": "dateme-98348",
+    "storage_bucket": "dateme-98348.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739551445336:android:20d5b2d053cad16a12652d",
+        "android_client_info": {
+          "package_name": "com.moringaschool.date_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739551445336-10k5im2vdlvc0nctj9q0dhg18ni0l7cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringaschool.date_me",
+            "certificate_hash": "79e404a732a31524281a75f25c0fe3ae0383a880"
+          }
+        },
+        {
+          "client_id": "739551445336-kr6qcm3u5iv924tn6k52qiio66kg0724.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVu4U3sG7q1EnvlH4PLRL8DdUmSMH1pEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739551445336-kr6qcm3u5iv924tn6k52qiio66kg0724.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
