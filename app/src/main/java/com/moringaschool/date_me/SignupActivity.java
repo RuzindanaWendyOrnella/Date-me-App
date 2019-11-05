@@ -32,6 +32,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.passwordEditText) EditText newUserPassword;
     @BindView(R.id.confirmPasswordEditText) EditText passConfirmation;
     @BindView(R.id.loginTextView) TextView backToLogin;
+    @BindView(R.id.choose) Button choose;
+    @BindView(R.id.upload) Button upload;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -46,6 +48,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         backToLogin.setOnClickListener(this);
         newUserButton.setOnClickListener(this);
+        choose.setOnClickListener(this);
+        upload.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
