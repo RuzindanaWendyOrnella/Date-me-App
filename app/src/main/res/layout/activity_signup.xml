@@ -71,6 +71,29 @@
             android:textColorHint="@color/colorPrimary"
             android:textSize="20sp" />
 
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/profile"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profile"
+            android:id="@+id/choose"
+            android:text="Choose"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/choose"
+            android:id="@+id/upload"
+            android:text="Upload"/>
+        </RelativeLayout>
 
         <Button
             android:id="@+id/createUserButton"
