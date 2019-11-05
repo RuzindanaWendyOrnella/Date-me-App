@@ -12,22 +12,22 @@
         android:id="@+id/imageView"
         android:src="@drawable/dating"
         android:scaleType="fitStart" />
+
     <TextView
         android:id="@+id/applicationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date Me"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:textColor="@color/colorRed"
+        android:fontFamily="@font/kaushan_script"
         android:shadowColor="@color/colorDark"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="50"
-        android:textSize="40sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        />
-
+        android:text="Date Me"
+        android:textColor="@color/colorRed"
+        android:textSize="40sp" />
 
 
     <TextView
@@ -35,12 +35,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background=""
+        android:fontFamily="@font/arizonia"
+        android:paddingLeft="15dp"
         android:text="Step aside,fate.\nIt's time science had a go at love."
         android:textColor="@color/colorDark"
-        android:layout_margin="15dp"
-        android:paddingLeft="15dp"
-        android:background=""/>
+        android:textSize="25sp" />
 
 
     <ImageView
@@ -56,8 +60,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/colorRed2"
+
+        android:fontFamily="@font/kaushan_script"
         android:text="Visit"
         android:textColor="@color/colorDark"
         android:textSize="20sp" />
