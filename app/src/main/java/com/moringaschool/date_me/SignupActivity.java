@@ -1,3 +1,4 @@
+
 package com.moringaschool.date_me;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,11 +40,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener authStateListener;
     private ProgressDialog progressDialog;
     private String name;
-
+    DatabaseReference reff;
+    Member member;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        member=new Member();
+        reff= FirebaseDatabase.getInstance().getReference().child("Member");
         ButterKnife.bind(this);
 
         backToLogin.setOnClickListener(this);
@@ -67,6 +73,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }
         if (view == newUserButton){
             createNewUser();
+            String Name = newUserName.getText().toString();
+            String Email = newUserEmail.getText().toString();
+            member.setName(newUserName.getText().toString().trim());
+            member.setEmail(newUserEmail.getText().toString().trim());
+            reff.push().setValue(member);
+            Toast.makeText(SignupActivity.this,"succeess",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
             startActivity(intent);
         }

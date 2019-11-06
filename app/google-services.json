@@ -15,7 +15,14 @@
       },
       "oauth_client": [
         {
-
+          "client_id": "739551445336-k3tl9eghi44nthbp1okqe7k9oidrsp4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringaschool.date_me",
+            "certificate_hash": "b58af46e009b189460ce5f6be017825b6b93546c"
+          }
+        },
+        {
           "client_id": "739551445336-10k5im2vdlvc0nctj9q0dhg18ni0l7cq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
