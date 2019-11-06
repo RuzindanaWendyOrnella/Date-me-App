@@ -3,6 +3,7 @@ package com.moringaschool.date_me;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +21,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dmax.dialog.SpotsDialog;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -32,19 +37,26 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.passwordEditText) EditText newUserPassword;
     @BindView(R.id.confirmPasswordEditText) EditText passConfirmation;
     @BindView(R.id.loginTextView) TextView backToLogin;
+    @BindView(R.id.profile) ImageView profile;
     @BindView(R.id.choose) Button choose;
     @BindView(R.id.upload) Button upload;
+
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private ProgressDialog progressDialog;
     private String name;
 
+    AlertDialog dialog;
+
+    StorageReference storageReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+
 
         backToLogin.setOnClickListener(this);
         newUserButton.setOnClickListener(this);
@@ -54,6 +66,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         firebaseAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
         createAuthProgressDialog();
+        dialog = new SpotsDialog.Builder().setContext(this).build();
+        storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     public void createAuthProgressDialog(){
