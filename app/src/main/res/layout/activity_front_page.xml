@@ -51,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:layout_alignParentBottom="true"
+
         android:scaleType="fitEnd"
         android:src="@drawable/gold1" />
 
@@ -61,7 +62,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:background="@color/colorRed2"
+        android:background="@drawable/buttonshape1"
         android:fontFamily="@font/kaushan_script"
         android:text="Visit"
         android:textColor="#795D16"
