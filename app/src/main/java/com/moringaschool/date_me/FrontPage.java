@@ -1,6 +1,8 @@
 package com.moringaschool.date_me;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -24,16 +26,18 @@ public class FrontPage extends AppCompatActivity {
         mVisit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation animate =
-                        AnimationUtils.loadAnimation(getApplicationContext(),
+                Animation animate = AnimationUtils.loadAnimation(getApplicationContext(),
                                 R.anim.fade);
                 mVisit.startAnimation(animate);
 
-            }
-            public void fade(View view){
-                Button button = (Button) findViewById(R.id.move);
+                Intent goTo = new Intent(FrontPage.this, LoginActivity.class);
+                startActivity(goTo);
 
             }
+//            public void fade(View view){
+//                Button button = (Button) findViewById(R.id.move);
+//
+//            }
 
         });
 
