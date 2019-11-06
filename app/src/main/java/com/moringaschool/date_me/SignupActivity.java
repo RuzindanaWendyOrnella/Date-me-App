@@ -21,6 +21,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -48,6 +50,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private String name;
 
     AlertDialog dialog;
+    DatabaseReference databaseReference;
 
     StorageReference storageReference;
 
@@ -67,7 +70,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         createAuthStateListener();
         createAuthProgressDialog();
         dialog = new SpotsDialog.Builder().setContext(this).build();
-        storageReference = FirebaseStorage.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Member");
+        storageReference = FirebaseStorage.getInstance().getReference("Member");
     }
 
     public void createAuthProgressDialog(){

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SignupActivity"
     android:padding="30dp"
-    android:background="@drawable/urukundo"
     >
 
     <LinearLayout
@@ -92,14 +91,16 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/profile"
             android:id="@+id/choose"
-            android:text="Choose"/>
+            android:text="Choose"
+            android:background="@drawable/back"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/choose"
             android:id="@+id/upload"
-            android:text="Upload"/>
+            android:text="Upload"
+            android:background="@drawable/back"/>
         </RelativeLayout>
 
         <Button
@@ -107,9 +108,9 @@
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginTop="15dp"
-
+            android:background="@drawable/back"
             android:padding="10dp"
-            android:text="Sign up"
+            android:text="Register"
             android:textColor="@color/colorDark" />
 
         <TextView
@@ -129,12 +130,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Account"
-
-        android:textSize="30dp"
-        android:textStyle="bold"
         android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Create Account"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
 
 
