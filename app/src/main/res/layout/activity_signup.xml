@@ -112,13 +112,15 @@
                     android:background="@drawable/back"
                     android:text="Choose profile" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/choose"
-                android:id="@+id/upload"
-                android:text="Upload"
-                android:background="@drawable/back"/>
+                <Button
+                    android:id="@+id/upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/profile"
+                    android:layout_below="@id/choose"
+                    android:background="@drawable/back"
+                    android:text="Upload" />
             </RelativeLayout>
 
             <Button
