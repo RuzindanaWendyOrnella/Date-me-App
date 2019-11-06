@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SignupActivity"
     android:padding="30dp"
+    android:background="@drawable/urukundo"
     >
 
     <LinearLayout
@@ -26,8 +27,9 @@
             android:nextFocusDown="@+id/passwordEditText"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorDark"
+            android:drawableLeft="@drawable/ic_account_circle_black_24dp"
             android:textSize="20sp" />
 
         <EditText
@@ -40,8 +42,9 @@
             android:nextFocusDown="@+id/passwordEditText"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorDark"
+            android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
             android:textSize="20sp" />
 
         <EditText
@@ -54,8 +57,9 @@
             android:nextFocusDown="@+id/passwordEditText"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorDark"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
             android:textSize="20sp" />
 
         <EditText
@@ -68,8 +72,9 @@
             android:nextFocusDown="@+id/passwordEditText"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorDark"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
             android:textSize="20sp" />
 
         <RelativeLayout
@@ -99,13 +104,13 @@
 
         <Button
             android:id="@+id/createUserButton"
-            android:layout_width="256dp"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginTop="15dp"
 
             android:padding="10dp"
             android:text="Sign up"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorDark" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,6 +121,7 @@
             android:textSize="15sp"
             android:text="Already have an account? Log in here!"
             android:id="@+id/loginTextView"
+            android:textColor="@color/colorDark"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
