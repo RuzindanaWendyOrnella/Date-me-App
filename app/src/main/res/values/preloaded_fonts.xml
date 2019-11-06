@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/almendra_display</item>
+        <item>@font/arizonia</item>
+        <item>@font/cagliostro</item>
+        <item>@font/damion</item>
+        <item>@font/kalam_light</item>
+        <item>@font/kaushan_script</item>
+        <item>@font/timmana</item>
+    </array>
+</resources>
