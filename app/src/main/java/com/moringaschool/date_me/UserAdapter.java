@@ -32,12 +32,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Member user=mUsers.get(position);
-        holder.username.setText(user.getName());
-if (user.getImageURL().equals("default")){
+      holder.username.setText(user.getName());
+/*if (user.getImageURL().equals("default")){
     holder.profile_image.setImageResource(R.mipmap.ic_launcher);
 }else {
     Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
-}
+}*/
 
     }
 
@@ -51,7 +51,7 @@ if (user.getImageURL().equals("default")){
         public ImageView profile_image;
         public ViewHolder(View view){
             super(view);
-            username=view.findViewById(R.id.username);
+            username=view.findViewById(R.id.userText);
             profile_image=view.findViewById(R.id.profile_image);
         }
     }
