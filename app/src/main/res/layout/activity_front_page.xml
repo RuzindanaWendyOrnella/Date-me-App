@@ -21,10 +21,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/kaushan_script"
-        android:shadowColor="@color/colorDark"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="50"
         android:text="Date Me"
         android:textColor="@color/colorRed"
         android:textSize="40sp" />
