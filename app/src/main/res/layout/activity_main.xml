@@ -25,5 +25,18 @@
         android:textStyle="bold" />
 
 </RelativeLayout>
-
+<com.google.android.material.tabs.TabLayout
+    android:id="@+id/tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:background="@color/colorAccent"
+    app:tabIndicatorColor="@color/colorPrimary"
+    app:tabTextColor="#000000"
+    app:tabSelectedTextColor="@color/colorPrimary"
+    />
+<androidx.viewpager.widget.ViewPager
+    android:id="@+id/view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </LinearLayout>
