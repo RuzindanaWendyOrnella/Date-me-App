@@ -27,11 +27,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.nameEditText) EditText loginName;
-    @BindView(R.id.emailEditText) EditText loginEmail;
-    @BindView(R.id.passEditText) EditText loginPassword;
-    @BindView(R.id.loginButton) Button loginButton;
-    @BindView(R.id.toSignUp) TextView toSignUp;
+    @BindView(R.id.nameEditText)
+    EditText loginName;
+    @BindView(R.id.emailEditText)
+    EditText loginEmail;
+    @BindView(R.id.passEditText)
+    EditText loginPassword;
+    @BindView(R.id.loginButton)
+    Button loginButton;
+    @BindView(R.id.toSignUp)
+    TextView toSignUp;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -40,22 +45,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     DatabaseReference reff;
     TextView username;
     Member member;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        member=new Member();
-        reff= FirebaseDatabase.getInstance().getReference().child("Member");
+        member = new Member();
+        reff = FirebaseDatabase.getInstance().getReference().child("Member");
         ButterKnife.bind(this);
         toSignUp.setOnClickListener(this);
         loginButton.setOnClickListener(this);
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
+                if (user != null) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -66,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         createAuthProgressDialog();
     }
 
-    private void createAuthProgressDialog(){
+    private void createAuthProgressDialog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading...");
         progressDialog.setMessage("Authenticating with Firebase...");
@@ -75,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v == toSignUp){
+        if (v == toSignUp) {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
 
             startActivity(intent);
@@ -83,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
         }
 
-        if (v == loginButton){
+        if (v == loginButton) {
             loginWithPassword();
             String Name = loginName.getText().toString();
             member.setName(loginName.getText().toString().trim());
@@ -95,22 +101,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void loginWithPassword(){
+    private void loginWithPassword() {
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()){
+                if (!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        if (email.equals("")){
+        if (email.equals("")) {
             loginEmail.setError("Please enter your Email");
             return;
         }
-        if (password.equals("")){
+        if (password.equals("")) {
             loginPassword.setError("Password cannot be blank");
             return;
         }
@@ -120,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
-                if (!task.isSuccessful()){
+                if (!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Authentication failed", Toast.LENGTH_LONG);
                 }
             }

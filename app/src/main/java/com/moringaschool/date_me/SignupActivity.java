@@ -1,4 +1,3 @@
-
 package com.moringaschool.date_me;
 
 import androidx.annotation.NonNull;
@@ -52,167 +51,152 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private ProgressDialog progressDialog;
     DatabaseReference reff;
     Member member;
-   /* @Override
+    /* @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_signup);
+         member=new Member();
+         reff= FirebaseDatabase.getInstance().getReference().child("Member");
+         ButterKnife.bind(this);
+         backToLogin.setOnClickListener(this);
+         newUserButton.setOnClickListener(this);
+         firebaseAuth = FirebaseAuth.getInstance();
+         createAuthStateListener();
+         createAuthProgressDialog();
+     }
+    public void createAuthProgressDialog(){
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setMessage("Authenticating with Firebase...");
+        progressDialog.setCancelable(true);
+     }
+     @Override
+     public void onClick(View v) {
+         if(v==backToLogin){
+             Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+             startActivity(intent);
+         }
+         if (v == newUserButton){
+             createNewUser();
+ //            Log.d("hello", createNewUser());
+              newUserName.getText().toString();
+             String Email = newUserEmail.getText().toString();
+             member.setName(newUserName.getText().toString().trim());
+             member.setEmail(newUserEmail.getText().toString().trim());
+             reff.push().setValue(member);
+             Toast.makeText(SignupActivity.this,"succeess",Toast.LENGTH_LONG).show();
+             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+             startActivity(intent);
+         }
+     }
+     //the below codes are for checking if the user entered valid credentials
+     private boolean isValidEmail(String email){
+         boolean isGoodEmail = (email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+         if (!isGoodEmail){
+             newUserEmail.setError("Please enter a valid address");
+             return false;
+         }
+         return isGoodEmail;
+     }
+     private boolean isValidName(String name){
+         if (name.equals("")){
+             newUserName.setError("Please enter your name");
+             return false;
+         }
+         return true;
+     }
+     private boolean isValidPassword(String password, String confirmPassword){
+         if (password.length()<6){
+             newUserPassword.setError("Please create a password containing at least 6 characters");
+             return false;
+         }
+         else if (!password.equals(confirmPassword)){
+             newUserPassword.setError("Passwords do not match");
+             return false;
+         }
+         return true;
+     }
+     //I am going to set the username
+     private void createFirebaseUserProfile(final FirebaseUser user){
+         UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                 .setDisplayName(mName).build();
+         System.out.println(mName);
+         user.updateProfile(addProfileName).addOnCompleteListener(new OnCompleteListener<Void>() {
+             @Override
+             public void onComplete(@NonNull Task<Void> task) {
+                 if (task.isSuccessful()){
+                     Log.d(TAG, user.getDisplayName());
+                     System.out.println(user.getDisplayName());
+                 }
+             }
+         });
+     }
+     //this is creating a new user
+     public void createNewUser(){
+         mName= newUserName.getText().toString();
+         final String name = newUserName.getText().toString();
+         final String email = newUserEmail.getText().toString();
+         String password = newUserPassword.getText().toString();
+         String confirm = passConfirmation.getText().toString().trim();
+         boolean validEmail = isValidEmail(email);
+         boolean validName = isValidName(mName);
+         boolean validPassword = isValidPassword(password, confirm);
+         if (!validEmail || !validName || !validPassword) return;
+         progressDialog.show();
+         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+             @Override
+             public void onComplete(@NonNull Task<AuthResult> task) {
+                 progressDialog.dismiss();
+                 if (task.isSuccessful()){
+                     createFirebaseUserProfile(task.getResult().getUser());
+                 }
+                 else {
+                     Toast.makeText(SignupActivity.this, "Authentication failed.", Toast.LENGTH_SHORT);
+                 }
+             }
+         });
+     }
+     //this AuthListener is in charge of listening to the happening event so that it opens and close the activity depending on the current situation
+     @Override
+     public void onStart(){
+         super.onStart();
+         firebaseAuth.addAuthStateListener(authStateListener);
+     }
+     @Override
+     public void onStop(){
+         super.onStop();
+         if (authStateListener != null){
+             firebaseAuth.removeAuthStateListener(authStateListener);
+         }
+     }
+     private void createAuthStateListener(){
+         authStateListener=new FirebaseAuth.AuthStateListener() {
+             @Override
+             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                 final  FirebaseUser user=firebaseAuth.getCurrentUser();
+                 if(user!= null){
+                     Intent intent=new Intent(SignupActivity.this,MainActivity.class);
+                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                     startActivity(intent);
+                     finish();
+                 }
+             }
+         };
+     }
+ }*/
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        member=new Member();
-        reff= FirebaseDatabase.getInstance().getReference().child("Member");
         ButterKnife.bind(this);
-
-        backToLogin.setOnClickListener(this);
-        newUserButton.setOnClickListener(this);
-
+        createAuthProgressDialog();
         firebaseAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
-        createAuthProgressDialog();
-    }
-
-
-   public void createAuthProgressDialog(){
-       progressDialog = new ProgressDialog(this);
-       progressDialog.setTitle("Loading...");
-       progressDialog.setMessage("Authenticating with Firebase...");
-       progressDialog.setCancelable(true);
+        backToLogin.setOnClickListener(this);
+        newUserButton.setOnClickListener(this);
     }
     @Override
-    public void onClick(View v) {
-        if(v==backToLogin){
-            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
-        if (v == newUserButton){
-            createNewUser();
-//            Log.d("hello", createNewUser());
-             newUserName.getText().toString();
-            String Email = newUserEmail.getText().toString();
-            member.setName(newUserName.getText().toString().trim());
-            member.setEmail(newUserEmail.getText().toString().trim());
-            reff.push().setValue(member);
-            Toast.makeText(SignupActivity.this,"succeess",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
-
-    //the below codes are for checking if the user entered valid credentials
-    private boolean isValidEmail(String email){
-        boolean isGoodEmail = (email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches());
-        if (!isGoodEmail){
-            newUserEmail.setError("Please enter a valid address");
-            return false;
-        }
-        return isGoodEmail;
-    }
-    private boolean isValidName(String name){
-        if (name.equals("")){
-            newUserName.setError("Please enter your name");
-            return false;
-        }
-        return true;
-    }
-    private boolean isValidPassword(String password, String confirmPassword){
-        if (password.length()<6){
-            newUserPassword.setError("Please create a password containing at least 6 characters");
-            return false;
-        }
-        else if (!password.equals(confirmPassword)){
-            newUserPassword.setError("Passwords do not match");
-            return false;
-        }
-        return true;
-    }
-    //I am going to set the username
-    private void createFirebaseUserProfile(final FirebaseUser user){
-        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
-                .setDisplayName(mName).build();
-        System.out.println(mName);
-        user.updateProfile(addProfileName).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Log.d(TAG, user.getDisplayName());
-                    System.out.println(user.getDisplayName());
-                }
-            }
-        });
-
-    }
-
-    //this is creating a new user
-    public void createNewUser(){
-        mName= newUserName.getText().toString();
-        final String name = newUserName.getText().toString();
-        final String email = newUserEmail.getText().toString();
-        String password = newUserPassword.getText().toString();
-        String confirm = passConfirmation.getText().toString().trim();
-
-        boolean validEmail = isValidEmail(email);
-        boolean validName = isValidName(mName);
-        boolean validPassword = isValidPassword(password, confirm);
-        if (!validEmail || !validName || !validPassword) return;
-        progressDialog.show();
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                progressDialog.dismiss();
-
-                if (task.isSuccessful()){
-                    createFirebaseUserProfile(task.getResult().getUser());
-                }
-                else {
-                    Toast.makeText(SignupActivity.this, "Authentication failed.", Toast.LENGTH_SHORT);
-                }
-            }
-
-        });
-
-    }
-
-
-    //this AuthListener is in charge of listening to the happening event so that it opens and close the activity depending on the current situation
-    @Override
-    public void onStart(){
-        super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        if (authStateListener != null){
-            firebaseAuth.removeAuthStateListener(authStateListener);
-        }
-    }
-
-    private void createAuthStateListener(){
-        authStateListener=new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final  FirebaseUser user=firebaseAuth.getCurrentUser();
-                if(user!= null){
-                    Intent intent=new Intent(SignupActivity.this,MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        };
-    }
-}*/
-   @Override
-   protected void onCreate(Bundle savedInstanceState) {
-       super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_signup);
-       ButterKnife.bind(this);
-       createAuthProgressDialog();
-       firebaseAuth = FirebaseAuth.getInstance();
-       createAuthStateListener();
-       backToLogin.setOnClickListener(this);
-       newUserButton.setOnClickListener(this);
-   }
-   @Override
     public void onClick(View account) {
         if (account == backToLogin) {
             Intent login = new Intent(SignupActivity.this, LoginActivity.class);
@@ -254,32 +238,32 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-   }
-        private void createAuthStateListener() {
-            authStateListener = new FirebaseAuth.AuthStateListener() {
+    }
+    private void createAuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            final FirebaseUser owner = firebaseAuth.getCurrentUser();
-            if (owner != null) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }
-        }        };
-    }    private void createFirebaseUserProfile(final FirebaseUser user) {
-       UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
-            .setDisplayName(mName)
-            .build();
-       user.updateProfile(addProfileName)
-            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Log.d(TAG, user.getDisplayName());
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser owner = firebaseAuth.getCurrentUser();
+                if (owner != null) {
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                 }
-            }
-            });
+            }        };
+    }    private void createFirebaseUserProfile(final FirebaseUser user) {
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(mName)
+                .build();
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, user.getDisplayName());
+                        }
+                    }
+                });
     }
     private void createAuthProgressDialog() {
         progressDialog = new ProgressDialog(this);
@@ -321,4 +305,3 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         return true;
     }
 }
-

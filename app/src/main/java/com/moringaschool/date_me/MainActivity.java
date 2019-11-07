@@ -109,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     class ViewPagerAdapter extends FragmentPagerAdapter{
-     private ArrayList<Fragment> fragments;
-     private ArrayList<String> titles;
-      ViewPagerAdapter(FragmentManager fm){
-          super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-          this.fragments=new ArrayList<>();
-          this.titles=new ArrayList<>();
-      }
+        private ArrayList<Fragment> fragments;
+        private ArrayList<String> titles;
+        ViewPagerAdapter(FragmentManager fm){
+            super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            this.fragments=new ArrayList<>();
+            this.titles=new ArrayList<>();
+        }
 
         @NonNull
         @Override
@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
             return fragments.size();
         }
         public void addFragment(Fragment fragment,String tittle){
-          fragments.add(fragment);
-          titles.add(tittle);
+            fragments.add(fragment);
+            titles.add(tittle);
         }
 
         @Nullable
@@ -139,6 +139,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-
-
