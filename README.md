@@ -44,20 +44,6 @@ To run this project,you may have android studio in you machine :
  
 
  ## Code Examples
-              
-
-   public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    CircleImageView profile_image;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private ProgressDialog progressDialog;
-    private String name;
-    TextView username;
-    FirebaseUser firebaseUser;
-    DatabaseReference reff;
-    Member member;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
