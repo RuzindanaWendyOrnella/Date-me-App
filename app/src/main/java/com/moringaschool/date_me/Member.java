@@ -3,7 +3,7 @@ package com.moringaschool.date_me;
 public class Member {
     private String Name;
     private String Email;
-
+    private String imageURL;
     public Member() {
     }
 
@@ -13,6 +13,14 @@ public class Member {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getEmail() {

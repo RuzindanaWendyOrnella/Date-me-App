@@ -17,16 +17,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.lang.reflect.Member;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
+    @BindView(R.id.nameEditText) EditText loginName;
     @BindView(R.id.emailEditText) EditText loginEmail;
     @BindView(R.id.passEditText) EditText loginPassword;
     @BindView(R.id.loginButton) Button loginButton;
@@ -36,12 +37,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth.AuthStateListener authStateListener;
 
     private ProgressDialog progressDialog;
-
+    DatabaseReference reff;
+    TextView username;
+    Member member;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        member=new Member();
+        reff= FirebaseDatabase.getInstance().getReference().child("Member");
         ButterKnife.bind(this);
         toSignUp.setOnClickListener(this);
         loginButton.setOnClickListener(this);
@@ -81,7 +85,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (v == loginButton){
             loginWithPassword();
+            String Name = loginName.getText().toString();
+            member.setName(loginName.getText().toString().trim());
+            reff.push().setValue(member);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("Name", Name);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
     }
