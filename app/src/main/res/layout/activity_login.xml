@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="140dp"
                     android:gravity="center"
+                    android:fontFamily="@font/almendra_sc"
                     android:text="LOVE GUESS"
                     android:textSize="30sp"
                     android:typeface="serif"/>

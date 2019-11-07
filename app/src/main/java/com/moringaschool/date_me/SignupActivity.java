@@ -34,7 +34,7 @@ import com.google.firebase.storage.UploadTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dmax.dialog.SpotsDialog;
+//import dmax.dialog.SpotsDialog;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -86,7 +86,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         firebaseAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
         createAuthProgressDialog();
-        dialog = new SpotsDialog.Builder().setContext(this).build();
+//        dialog = new SpotsDialog.Builder().setContext(this).build();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Member");
         storageReference = FirebaseStorage.getInstance().getReference("Images");
         Member member = new Member();

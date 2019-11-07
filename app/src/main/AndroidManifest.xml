@@ -22,7 +22,7 @@
         <activity android:name=".SignupActivity"></activity>
        
 
-        <activity android:name=".FrontPage">
+        <activity android:name=".FrontPage" android:theme="@style/NoActionBarTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
