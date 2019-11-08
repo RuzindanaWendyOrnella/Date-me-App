@@ -4,18 +4,18 @@
 This is an Android Application  where you can view profiles of the ones using the app and can be able to communicate with them by chatting using messages and maybe plan for a  date. 
 
 ### Table of contents
- General info.
- Technologies.
- Setup.
- BDD.
- Input.
- Output.
- Code Examples.
- Status.
- Inspiration.
- Contact.
- Licence.
- General info.
+ * General info.
+ * Technologies.
+ * Setup.
+ * BDD.
+ * Input.
+ * Output.
+ * Code Examples.
+ * Status.
+ * Inspiration.
+ * Contact.
+ * Licence.
+ ### General info
 This project is called Date_me_APP, It is an Android application which will allow the user to choose a certain person according to his/her choice and then be able to chat with that person.
 
 ### Technologies
