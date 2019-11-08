@@ -19,7 +19,8 @@ This is an Android Application  where you can view profiles of the ones using th
 This project is called Date_me_APP, It is an Android application which will allow the user to choose a certain person according to his/her choice and then be able to chat with that person.
 
 ### Technologies
-Project is created with: * Java.
+Project is created with: 
+                         * Java.
                          * Android.
                          * Firebase.
 ### Setup
